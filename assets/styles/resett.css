@@ -5,6 +5,10 @@
     font-family: 'Roboto';
 }
 
+body, html {
+    background: #fafafa;
+}
+
 * {
     box-sizing: border-box;
     text-decoration: none;

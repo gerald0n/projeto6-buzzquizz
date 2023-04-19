@@ -109,6 +109,11 @@
     color: #ffffff;
 }
 
+.screen01 img {
+    width: 100%;
+    height: 100%;
+}
+
 #shadow {
     width: 100%;
     height: 100%;

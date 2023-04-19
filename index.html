@@ -99,9 +99,11 @@
             </div>
         </section>
 
-        <section class="screen03" style="display: none">
-            <div class="screen03-1">
-                <div class="header-title">Comece pelo começo</div>
+        <section class="screen03">
+            <div class="screen03-1" style="display: none">
+                <div class="header-title">
+                    <h2>Comece pelo começo</h2>
+                </div>
                 <div class="quest">
                     <input
                         type="text"
@@ -127,6 +129,98 @@
                 <button id="btnProceedToQuestions">
                     Prosseguir para criar perguntas
                 </button>
+            </div>
+
+            <div class="screen03-2" style="display: none">
+                <div class="header-title">
+                    <h2>Crie suas perguntas</h2>
+                </div>
+                <div class="question-create-card">
+                    <div class="question wrapper">
+                        <div class="question-head">
+                            <span>Pergunta 1</span>
+                            <ion-icon name="create-outline"></ion-icon>
+                        </div>
+                        <input type="text" placeholder="Texto da pergunta" />
+                        <input
+                            type="text"
+                            placeholder="Cor de fundo da pergunta"
+                        />
+                    </div>
+                    <div class="correct-answer wrapper">
+                        <span>Resposta correta</span>
+
+                        <input type="text" placeholder="Resposta correta" />
+                        <input type="text" placeholder="URL da imagem" />
+                    </div>
+                    <div class="incorrect-answers wrapper">
+                        <span>Respostas incorretas</span>
+                        <div class="wrapper">
+                            <input
+                                type="text"
+                                placeholder="Resposta incorreta 1"
+                            />
+                            <input type="text" placeholder="URL da imagem 1" />
+                        </div>
+                        <div class="wrapper">
+                            <input
+                                type="text"
+                                placeholder="Resposta incorreta 2"
+                            />
+                            <input type="text" placeholder="URL da imagem 2" />
+                        </div>
+                        <div class="wrapper">
+                            <input
+                                type="text"
+                                placeholder="Resposta incorreta 3"
+                            />
+                            <input type="text" placeholder="URL da imagem 3" />
+                        </div>
+                    </div>
+                </div>
+                <button id="btnCreateLevels">
+                    Prosseguir pra criar níveis
+                </button>
+            </div>
+
+            <div class="screen03-3" style="display: none;">
+                <div class="header-title">
+                    <h2>Agora, decida os níveis!</h2>
+                </div>
+                <div class="levels-create-card">
+                    <div class="levels wrapper">
+                        <div class="level-head">
+                            <span>Nivel 1</span>
+                        </div>
+                        <input type="text" placeholder="Título do nível" />
+                        <input type="text" placeholder="% de acerto mínima" />
+                        <input
+                            type="text"
+                            placeholder="URL da imagem do nível"
+                        />
+                        <textarea placeholder="Descrição do nível"></textarea>
+                    </div>
+                </div>
+                <button id="btnCreateQuizz">
+                    Prosseguir pra criar níveis
+                </button>
+            </div>
+
+            <div class="screen03-4" style="display: none;">
+                <div class="header-title">
+                    <h2>Seu quizz está pronto!</h2>
+                </div>
+                <div class="card-quizz">
+                    <div id="shadow"></div>
+                    <img src="./assets/images/image02.png" alt="" />
+                    <span
+                        >Acerte os personagens corretos dos Simpsons e prove
+                        seu amor!</span>
+                </div>
+                <button id="btnAcessQuizz">
+                    Acessar Quizz
+                </button>
+                <a href="">Voltar pra home</a>
             </div>
         </section>
     </body>
