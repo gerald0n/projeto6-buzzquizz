@@ -52,7 +52,7 @@
 
 /* questions */
 
-.container-question {
+.question {
     background-color: white;
     height: 676px;
     width: 760px;
@@ -199,7 +199,7 @@
 @media (max-width: 1100px) {
     /* question */
 
-    .container-question {
+    .question {
         width: 100%;
         height: inherit;
         padding: 18px 18px;
