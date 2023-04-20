@@ -9,9 +9,9 @@
             rel="stylesheet"
         />
         <style>
-          * {
-            box-sizing: border-box;
-          }
+            * {
+                box-sizing: border-box;
+            }
         </style>
         <script
             type="module"
@@ -23,7 +23,7 @@
         ></script>
         <link rel="stylesheet" href="./assets/styles/resett.css" />
         <link rel="stylesheet" href="./assets/styles/screen01.css" />
-        <link rel="stylesheet" href="./assets/styles/screen02.css">
+        <link rel="stylesheet" href="./assets/styles/screen02.css" />
         <link rel="stylesheet" href="./assets/styles/screen03.css" />
         <title>BuzzQuizz</title>
     </head>
@@ -32,9 +32,9 @@
             <h1>BuzzQuizz</h1>
         </header>
 
-        <section class="screen01" style="display: none; ">
+        <section class="screen01">
             <!-- START - adicionar class disabled para desativar essa div -->
-            <div class="user-quizzes disabled">
+            <div class="user-quizzes">
                 <div class="add-quizz-hidden">
                     <h2>Seus Quizzes</h2>
                     <ion-icon name="add-circle-sharp"></ion-icon>
@@ -105,53 +105,59 @@
             </div>
         </section>
 
-        <section class="screen02">
+        <section class="screen02" style="display: none">
             <div class="banner">
-              <div class="darkened-image"></div>
-              <img src="./assets/images/Rectangle.png" alt="">
-              <div>
-                  <label>titulo quizz</label>
-              </div>
+                <div class="darkened-image"></div>
+                <img src="./assets/images/Rectangle.png" alt="" />
+                <div>
+                    <label>titulo quizz</label>
+                </div>
             </div>
             <div class="content">
-              <div class="container-question">
-                  <div class="header-question">
-                      <label>Pergunta</label>
-                  </div>
-                  <div class="content-answer">
-                      <div class="answer">
-                          <img src="./assets/images/image 8.png" alt="">
-                          <label>text</label>
-                      </div>
-                      <div class="answer">
-                          <img src="./assets/images/image 8.png" alt="">
-                          <label>text</label>
-                      </div>
-                      <div class="answer">
-                          <img src="./assets/images/image 8.png" alt="">
-                          <label>text</label>
-                      </div>
-                      <div class="answer">
-                          <img src="./assets/images/image 8.png" alt="">
-                          <label>text</label>
-                      </div>
-                  </div>
-              </div>
-              <div class="container-result">
-                  <div class="header-result">
-                      <label>Texto</label>
-                  </div>
-                  <div class="result">
-                      <img src="./assets/images/image 10.png" alt="">
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus aspernatur et, voluptatem laborum amet commodi quia sint quo magni consequatur quis earum deleniti velit impedit in, cumque repudiandae, maxime dolore!</p>
-                  </div>
-              </div>
-              <div class="buttons">
-                  <button>Reiniciar Quizz</button>
-                  <button>Voltar pra home</button>
-              </div>
+                <div class="container-question">
+                    <div class="header-question">
+                        <label>Pergunta</label>
+                    </div>
+                    <div class="content-answer">
+                        <div class="answer">
+                            <img src="./assets/images/image 8.png" alt="" />
+                            <label>text</label>
+                        </div>
+                        <div class="answer">
+                            <img src="./assets/images/image 8.png" alt="" />
+                            <label>text</label>
+                        </div>
+                        <div class="answer">
+                            <img src="./assets/images/image 8.png" alt="" />
+                            <label>text</label>
+                        </div>
+                        <div class="answer">
+                            <img src="./assets/images/image 8.png" alt="" />
+                            <label>text</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-result">
+                    <div class="header-result">
+                        <label>Texto</label>
+                    </div>
+                    <div class="result">
+                        <img src="./assets/images/image 10.png" alt="" />
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Ducimus aspernatur et, voluptatem laborum amet
+                            commodi quia sint quo magni consequatur quis earum
+                            deleniti velit impedit in, cumque repudiandae,
+                            maxime dolore!
+                        </p>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button>Reiniciar Quizz</button>
+                    <button>Voltar pra home</button>
+                </div>
             </div>
-          </section>
+        </section>
 
         <section class="screen03">
             <div class="screen03-1" style="display: none">
@@ -235,7 +241,7 @@
                 </button>
             </div>
 
-            <div class="screen03-3" style="display: none;">
+            <div class="screen03-3" style="display: none">
                 <div class="header-title">
                     <h2>Agora, decida os níveis!</h2>
                 </div>
@@ -253,12 +259,10 @@
                         <textarea placeholder="Descrição do nível"></textarea>
                     </div>
                 </div>
-                <button id="btnCreateQuizz">
-                    Prosseguir pra criar níveis
-                </button>
+                <button id="btnCreateQuizz">Prosseguir pra criar níveis</button>
             </div>
 
-            <div class="screen03-4" style="display: none;">
+            <div class="screen03-4" style="display: none">
                 <div class="header-title">
                     <h2>Seu quizz está pronto!</h2>
                 </div>
@@ -266,14 +270,16 @@
                     <div id="shadow"></div>
                     <img src="./assets/images/image02.png" alt="" />
                     <span
-                        >Acerte os personagens corretos dos Simpsons e prove
-                        seu amor!</span>
+                        >Acerte os personagens corretos dos Simpsons e prove seu
+                        amor!</span
+                    >
                 </div>
-                <button id="btnAcessQuizz">
-                    Acessar Quizz
-                </button>
+                <button id="btnAcessQuizz">Acessar Quizz</button>
                 <a href="">Voltar pra home</a>
             </div>
         </section>
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="./assets/scripts/main.js"></script>
     </body>
 </html>
