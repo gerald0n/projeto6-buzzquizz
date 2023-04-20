@@ -1,11 +1,7 @@
 .screen02 {
     background-color: #FAFAFA;
     width: 100%;
-    margin: 7rem auto;
-}
-
-.content {
-    background-color: aqua;
+    margin: 6.93rem auto 0;
 }
 
 .hidden {
@@ -16,8 +12,6 @@
 
 .banner {
     width: 100%;
-    height: 15.763888889%;
-    color: black;
     position: relative;
 }
 
@@ -27,7 +21,6 @@
         rgba(0, 0, 0, 0.6)
     );
     width: 100%;
-    height: 100%;
 
     position: absolute;
     top: 0px;
@@ -40,7 +33,7 @@
 
 .banner > div {
     width: 100%;
-    height: 100%;
+    height: 99%;
 
     display: flex;
     align-items: center;
@@ -60,7 +53,7 @@
 /* questions */
 
 .container-question {
-    background-color: pink;
+    background-color: white;
     height: 676px;
     width: 760px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0, 0.05);
@@ -88,7 +81,6 @@
 }
 
 .content-answer {
-    background-color: blue;
     height: 450px;
 
     display: flex;
@@ -98,7 +90,6 @@
 }
 
 .answer {
-    background-color: green;
     width: 330px;
     height: 225px;
 
@@ -122,7 +113,7 @@
 /* result */
 
 .container-result {
-    background-color: pink;
+    background-color: white;
     width: 760px;
     height: 430px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0, 0.05);
@@ -206,26 +197,43 @@
 /* responsive */
 
 @media (max-width: 1100px) {
+    /* question */
+
     .container-question {
         width: 100%;
-        padding: 4.142011834% 4.736842105%;
+        height: inherit;
+        padding: 18px 18px;
     }
 
     .content-answer {
-        height: 66.568047337%;
+        height: inherit;
     }
 
     .answer {
-        width: 43.421052632%;
+        width: 48.421052632%;
         height: 33.284023669%;
+        margin-bottom: 10px;
     }
+
+    /* result */
 
     .container-result {
         width: 100%;
-        padding: 4.186046512% 2.368421053% 5.11627907%;
+        height: inherit;
+        padding: 18px;
     }
 
     .result {
         flex-direction: column;
+    }
+
+    .result img {
+        width: 100%;
+        margin-right: 0px;
+        margin-bottom: 15px;
+    }
+
+    .buttons {
+        margin: 34px auto 0px;
     }
 }
