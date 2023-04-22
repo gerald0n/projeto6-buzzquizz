@@ -3,7 +3,7 @@
     width: 100%;
 }
 
-button {
+.screen02 button {
     background-color: white;
     border: none;
 }
@@ -92,7 +92,7 @@ button {
     padding: 28px 36px;
 }
 
-.header-question {
+.screen02 .header-question {
     color: white;
     font-size: 23px;
     font-weight: 700;
@@ -114,7 +114,7 @@ button {
     justify-content: space-between;
 }
 
-.answer {
+.screen02 .answer {
     width: 330px;
     padding: 0;
 
@@ -122,11 +122,11 @@ button {
     flex-wrap: wrap;
 }
 
-.answer img {
+.screen02 .answer img {
     width: 100%;
 }
 
-.answer p {
+.screen02 .answer p {
     font-size: 20px;
     font-weight: 700;
     line-height: 23px;
@@ -217,7 +217,7 @@ button {
 @media (max-width: 1100px) {
     /* question */
 
-    .question {
+    .screen02 .question {
         width: 100%;
         height: inherit;
         padding: 18px;
@@ -227,7 +227,7 @@ button {
         height: inherit;
     }
 
-    .answer {
+    .screen02 .answer {
         width: 48.421052632%;
     }
 
