@@ -1,4 +1,3 @@
-const url = "https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes/";
 const timeToScroll = 100;
 let quizData;
 let hits = 0;
@@ -79,7 +78,7 @@ function renderQuiz(quiz) {
 }
 
 function initScreen(quizId) {
-    const promise = axios.get(url + quizId);
+    const promise = axios.get(URL_QUIZZES + '/' + quizId);
     hits = 0;
     indexQuestion = 0;
 

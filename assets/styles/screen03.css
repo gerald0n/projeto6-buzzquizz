@@ -5,6 +5,10 @@
     background: #fafafa;
 }
 
+.screen03-2, .screen03-3 {
+    gap: 2.4rem;
+}
+
 .header-title {
     font-weight: 700;
     font-size: 2rem;
@@ -12,16 +16,16 @@
     text-align: center;
 }
 
-.screen03 .screen03-1,
-.screen03 .screen03-2,
-.screen03 .screen03-3 {
+.screen03-1,
+.screen03-2,
+.screen03-3 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.screen03 .screen03-1 .quest {
+.screen03-1 .quest {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -61,20 +65,29 @@
     margin-top: 3rem;
 }
 
+.screen03 button:disabled,
+.screen03-2 button:disabled {
+    background: #cacaca;
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
-    gap: 1.4rem;
 }
 
-.question-head {
+.wrapper input,
+.wrapper span:not(.question-head span, .level-head span) {
+    margin-bottom: 1.4rem;
+}
+
+.question-head, .level-head {
+    height: 7.4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.7rem;
 }
 
-.question-head ion-icon {
+.question-head ion-icon, .level-head ion-icon {
     width: 2.6rem;
     height: 2.3rem;
 }
@@ -88,7 +101,6 @@
     width: 100%;
     height: 7.4rem;
     overflow: hidden;
-    padding-block: 2.7rem;
     padding-inline: 1.7rem;
 
     background: #ffffff;
@@ -96,26 +108,27 @@
     display: flex;
     flex-direction: column;
     gap: 2.8rem;
+    transition: all 0.5s;
 }
 
-.question-create-card:hover {
+.question-create-card.selected {
     height: 87rem;
-    transition: all 1s;
+    transition: all 0.5s;
+}
+
+.question-create-card.selected .question-head ion-icon {
+    display: none;
+    transition: all 0.5s;
 }
 
 .incorrect-answers > div {
     margin-bottom: 3.2rem;
 }
 
-.level-head {
-    margin-bottom: 1.7rem;
-}
-
 .levels-create-card {
     width: 100%;
     height: 7.4rem;
     overflow: hidden;
-    padding-block: 2.7rem;
     padding-inline: 1.7rem;
 
     background: #ffffff;
@@ -123,11 +136,17 @@
     display: flex;
     flex-direction: column;
     gap: 2.8rem;
+    transition: all 0.5s;
 }
 
-.levels-create-card:hover {
+.levels-create-card.selected {
     height: 48rem;
-    transition: all 1s;
+    transition: all 0.5s;
+}
+
+.levels-create-card.selected .level-head ion-icon {
+    display: none;
+    transition: all 0.5s;
 }
 
 textarea {
@@ -160,7 +179,6 @@ textarea::placeholder {
 }
 
 .screen03-4 a {
-    
     font-size: 1.8rem;
     text-align: center;
     color: #818181;
@@ -203,6 +221,14 @@ textarea::placeholder {
     line-height: 2.2rem;
 }
 
+.dp-none {
+    display: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
 @media (min-width: 1100px) {
     .screen03 .screen03-1 .quest {
         width: 60rem;
@@ -213,18 +239,13 @@ textarea::placeholder {
     .levels-create-card {
         width: 60rem;
     }
-
-    .screen03 button {
-        width: 37rem;
-    }
-
     .screen03 .card-quizz {
         width: 50rem;
         height: 26.6rem;
     }
 
     .screen03 button {
-        width: 22.1rem;
+        width: 37rem;
         height: 5.4rem;
     }
 }

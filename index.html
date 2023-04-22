@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,11 +8,6 @@
             href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
             rel="stylesheet"
         />
-        <style>
-            * {
-                box-sizing: border-box;
-            }
-        </style>
         <script
             type="module"
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
@@ -32,80 +27,9 @@
             <h1>BuzzQuizz</h1>
         </header>
 
-        <section class="screen01" style="display: none">
-            <!-- START - adicionar class disabled para desativar essa div -->
-            <div class="user-quizzes">
-                <div class="add-quizz-hidden">
-                    <h2>Seus Quizzes</h2>
-                    <ion-icon name="add-circle-sharp"></ion-icon>
-                </div>
-                <div class="container-cards">
-                    <div class="card-quizz">
-                        <div id="shadow"></div>
-                        <img src="./assets/images/image01.png" alt="" />
-                        <span>O quão Potterhead é você?</span>
-                    </div>
-                </div>
-            </div>
-            <!-- END - adicionar class disabled para desativar essa div -->
+        <section class="screen01"></section>
 
-            <!-- START - adicionar class disabled para desativar essa div -->
-            <div class="create-quizz">
-                <p>
-                    Você não criou nenhum <br />
-                    quizz ainda :(
-                </p>
-                <button class="btnCreateQuizz">Criar Quizz</button>
-            </div>
-            <!--END - adicionar class disabled para desativar essa div -->
-
-            <div class="all-quizzes">
-                <h2>Todos os Quizzes</h2>
-                <div class="container-cards">
-                    <div class="card-quizz">
-                        <div id="shadow"></div>
-                        <img src="./assets/images/image02.png" alt="" />
-                        <span
-                            >Acerte os personagens corretos dos Simpsons e prove
-                            seu amor!</span
-                        >
-                    </div>
-                    <div class="card-quizz">
-                        <div id="shadow"></div>
-                        <img src="./assets/images/image03.png" alt="" />
-                        <span>É ex-BBB ou ex-De férias com o Ex?</span>
-                    </div>
-                    <div class="card-quizz">
-                        <div id="shadow"></div>
-                        <img src="./assets/images/image02.png" alt="" />
-                        <span
-                            >Acerte os personagens corretos dos Simpsons e prove
-                            seu amor!</span
-                        >
-                    </div>
-                    <div class="card-quizz">
-                        <div id="shadow"></div>
-                        <img src="./assets/images/image03.png" alt="" />
-                        <span>É ex-BBB ou ex-De férias com o Ex?</span>
-                    </div>
-                    <div class="card-quizz">
-                        <div id="shadow"></div>
-                        <img src="./assets/images/image02.png" alt="" />
-                        <span
-                            >Acerte os personagens corretos dos Simpsons e prove
-                            seu amor!</span
-                        >
-                    </div>
-                    <div class="card-quizz">
-                        <div id="shadow"></div>
-                        <img src="./assets/images/image03.png" alt="" />
-                        <span>É ex-BBB ou ex-De férias com o Ex?</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="screen02">
+        <section class="screen02 dp-none">
             <div class="banner">
                 <div class="darkened-image"></div>
                 <img src="./assets/images/Rectangle.png" alt="" />
@@ -150,7 +74,7 @@
         </section>
 
         <section class="screen03">
-            <div class="screen03-1" style="display: none">
+            <div class="screen03-1 dp-none">
                 <div class="header-title">Comece pelo começo</div>
                 <div class="quest">
                     <input
@@ -174,85 +98,16 @@
                         id="amountLevels"
                     />
                 </div>
-                <button id="btnProceedToQuestions">
+                <button id="btnProceedToQuestions" disabled>
                     Prosseguir para criar perguntas
                 </button>
             </div>
 
-            <div class="screen03-2" style="display: none">
-                <div class="header-title">
-                    <h2>Crie suas perguntas</h2>
-                </div>
-                <div class="question-create-card">
-                    <div class="question wrapper">
-                        <div class="question-head">
-                            <span>Pergunta 1</span>
-                            <ion-icon name="create-outline"></ion-icon>
-                        </div>
-                        <input type="text" placeholder="Texto da pergunta" />
-                        <input
-                            type="text"
-                            placeholder="Cor de fundo da pergunta"
-                        />
-                    </div>
-                    <div class="correct-answer wrapper">
-                        <span>Resposta correta</span>
+            <div class="screen03-2 dp-none"></div>
 
-                        <input type="text" placeholder="Resposta correta" />
-                        <input type="text" placeholder="URL da imagem" />
-                    </div>
-                    <div class="incorrect-answers wrapper">
-                        <span>Respostas incorretas</span>
-                        <div class="wrapper">
-                            <input
-                                type="text"
-                                placeholder="Resposta incorreta 1"
-                            />
-                            <input type="text" placeholder="URL da imagem 1" />
-                        </div>
-                        <div class="wrapper">
-                            <input
-                                type="text"
-                                placeholder="Resposta incorreta 2"
-                            />
-                            <input type="text" placeholder="URL da imagem 2" />
-                        </div>
-                        <div class="wrapper">
-                            <input
-                                type="text"
-                                placeholder="Resposta incorreta 3"
-                            />
-                            <input type="text" placeholder="URL da imagem 3" />
-                        </div>
-                    </div>
-                </div>
-                <button id="btnCreateLevels">
-                    Prosseguir pra criar níveis
-                </button>
-            </div>
+            <div class="screen03-3 dp-none"></div>
 
-            <div class="screen03-3" style="display: none">
-                <div class="header-title">
-                    <h2>Agora, decida os níveis!</h2>
-                </div>
-                <div class="levels-create-card">
-                    <div class="levels wrapper">
-                        <div class="level-head">
-                            <span>Nivel 1</span>
-                        </div>
-                        <input type="text" placeholder="Título do nível" />
-                        <input type="text" placeholder="% de acerto mínima" />
-                        <input
-                            type="text"
-                            placeholder="URL da imagem do nível"
-                        />
-                        <textarea placeholder="Descrição do nível"></textarea>
-                    </div>
-                </div>
-                <button id="btnCreateQuizz">Prosseguir pra criar níveis</button>
-            </div>
-
-            <div class="screen03-4" style="display: none">
+            <div class="screen03-4 dp-none">
                 <div class="header-title">
                     <h2>Seu quizz está pronto!</h2>
                 </div>
@@ -271,10 +126,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="./assets/scripts/main.js"></script>
-        
-        <!-- script screen01 -->
         <script src="./assets/scripts/screen02.js"></script>
-        <!-- script screen03 -->
-
+        <script src="./assets/scripts/screen03.js"></script>
     </body>
 </html>
