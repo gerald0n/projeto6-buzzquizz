@@ -120,42 +120,30 @@
                             <label>Pergunta</label>
                         </div>
                         <div class="content-answer">
-                            <div class="answer">
+                            <button class="answer" onclick="setAnswer(this)">
                                 <img src="./assets/images/image 8.png" alt="" />
-                                <label>text</label>
-                            </div>
-                            <div class="answer">
+                                <p>text</p>
+                            </button>
+                            <button class="answer" onclick="setAnswer(this)">
                                 <img src="./assets/images/image 8.png" alt="" />
-                                <label>text</label>
-                            </div>
-                            <div class="answer">
+                                <p>text</p>
+                            </button>
+                            <button class="answer" onclick="setAnswer(this)">
                                 <img src="./assets/images/image 8.png" alt="" />
-                                <label>text</label>
-                            </div>
-                            <div class="answer">
+                                <p>text</p>
+                            </button>
+                            <button class="answer" onclick="setAnswer(this)">
                                 <img src="./assets/images/image 8.png" alt="" />
-                                <label>text</label>
-                            </div>
+                                <p>text</p>
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="container-result">
-                    <div class="header-result">
-                        <label>Texto</label>
-                    </div>
-                    <div class="result">
-                        <img src="./assets/images/image 10.png" alt="" />
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Ducimus aspernatur et, voluptatem laborum amet
-                            commodi quia sint quo magni consequatur quis earum
-                            deleniti velit impedit in, cumque repudiandae,
-                            maxime dolore!
-                        </p>
-                    </div>
+                <div class="container-result hidden">
+                    <!-- innerHTML render by js -->
                 </div>
                 <div class="buttons">
-                    <button>Reiniciar Quizz</button>
+                    <button onclick="restartQuiz()">Reiniciar Quizz</button>
                     <button>Voltar pra home</button>
                 </div>
             </div>
