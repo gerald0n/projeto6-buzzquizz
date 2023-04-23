@@ -18,7 +18,7 @@ function renderResult() {
     });
 
     const containerResult = document.querySelector('.container-result');
-    containerResult.classList.remove('hidden');
+    containerResult.classList.remove('dp-none');
     containerResult.classList.add('shown-flex');
 
     containerResult.innerHTML = `
@@ -37,9 +37,11 @@ function renderResult() {
 function renderQuiz(quiz) {
     quizData = quiz.data;
 
+    replaceScreen(document.querySelector('.screen01'), document.querySelector('.screen02'));
+
     document.querySelector('.banner').innerHTML = `
         <div class="darkened-image"></div>
-        <img src="${quizData.img}" alt="" />
+        <img src=${quizData.image} alt="" />
         <div>
             <label>${quizData.title}</label>
         </div>
@@ -125,10 +127,5 @@ function setAnswer(selectedAnswer) {
 }
 
 function restartQuiz() {
-    window.location.reload();
     initScreen(quizData.id);
 }
-
-// calls of functions
-
-initScreen('92');

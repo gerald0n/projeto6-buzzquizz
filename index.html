@@ -17,6 +17,7 @@
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
         ></script>
         <link rel="stylesheet" href="./assets/styles/resett.css" />
+        <link rel="stylesheet" href="./assets/styles/main.css">
         <link rel="stylesheet" href="./assets/styles/screen01.css" />
         <link rel="stylesheet" href="./assets/styles/screen02.css" />
         <link rel="stylesheet" href="./assets/styles/screen03.css" />
@@ -31,44 +32,18 @@
 
         <section class="screen02 dp-none">
             <div class="banner">
-                <div class="darkened-image"></div>
-                <img src="./assets/images/Rectangle.png" alt="" />
-                <div>
-                    <label>titulo quizz</label>
-                </div>
+                <!-- innerHTML render by js -->
             </div>
             <div class="content">
                 <div class="container-question">
-                    <div class="question">
-                        <div class="header-question">
-                            <label>Pergunta</label>
-                        </div>
-                        <div class="content-answer">
-                            <button class="answer" onclick="setAnswer(this)">
-                                <img src="./assets/images/image 8.png" alt="" />
-                                <p>text</p>
-                            </button>
-                            <button class="answer" onclick="setAnswer(this)">
-                                <img src="./assets/images/image 8.png" alt="" />
-                                <p>text</p>
-                            </button>
-                            <button class="answer" onclick="setAnswer(this)">
-                                <img src="./assets/images/image 8.png" alt="" />
-                                <p>text</p>
-                            </button>
-                            <button class="answer" onclick="setAnswer(this)">
-                                <img src="./assets/images/image 8.png" alt="" />
-                                <p>text</p>
-                            </button>
-                        </div>
-                    </div>
+                    <!-- innerHTML render by js -->
                 </div>
-                <div class="container-result hidden">
+                <div class="container-result dp-none">
                     <!-- innerHTML render by js -->
                 </div>
                 <div class="buttons">
                     <button onclick="restartQuiz()">Reiniciar Quizz</button>
-                    <button>Voltar pra home</button>
+                    <button onclick="backHome('.screen02')">Voltar pra home</button>
                 </div>
             </div>
         </section>

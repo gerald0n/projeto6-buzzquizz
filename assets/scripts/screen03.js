@@ -34,8 +34,7 @@ if (btnProceedToQuestions)
             inputAmountQuestions.value >= 3 &&
             inputAmountLevels.value >= 2
         ) {
-            screen03_1.classList.add('dp-none')
-            screen03_2.classList.remove('dp-none')
+            replaceScreen(screen03_1, screen03_2);
             renderScreen03_2(Number(inputAmountQuestions.value))
         } else
             alert(
