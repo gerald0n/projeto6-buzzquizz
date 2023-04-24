@@ -1,4 +1,4 @@
-const timeToScroll = 100;
+const timeToScroll = 2000;
 let quizData;
 let hits = 0;
 let questionsAnswered = 0;
