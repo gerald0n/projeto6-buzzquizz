@@ -155,10 +155,10 @@ function renderScreen03_3() {
 </div>`
 
     for (let index = 0; index < inputAmountLevels.value; index++)
-        screen03_3.innerHTML += `<div class="levels-create-card inputLevel0${
+        screen03_3.innerHTML += `<div data-test="level-ctn" class="levels-create-card inputLevel0${
             index + 1
         }">
-    <div class="levels wrapper" data-test="level-ctn">
+    <div class="levels wrapper">
         <div class="level-head">
             <span>Nivel ${index + 1}</span>
             <ion-icon name="create-outline" data-test="toggle"></ion-icon>
