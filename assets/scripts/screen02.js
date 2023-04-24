@@ -1,7 +1,7 @@
 const timeToScroll = 100;
 let quizData;
 let hits = 0;
-let indexQuestion = 0;
+let questionsAnswered = 0;
 
 function quizScore(amountHits, amountQuestions) {
     return amountHits * 100 / amountQuestions;
@@ -31,7 +31,8 @@ function renderResult() {
         </div>
     `;
 
-    containerResult.scrollIntoView(false);
+    containerResult.scrollIntoView();
+    scrollBy(0, -60);
 }
 
 function renderQuiz(quiz) {
@@ -82,7 +83,7 @@ function renderQuiz(quiz) {
 function initScreen(quizId) {
     const promise = axios.get(URL_QUIZZES + '/' + quizId);
     hits = 0;
-    indexQuestion = 0;
+    questionsAnswered = 0;
 
     promise.then(renderQuiz);
     promise.catch( (error) => {
@@ -92,16 +93,27 @@ function initScreen(quizId) {
     });
 }
 
+function scrollToUnansweredQuestion() {
+    for (let i = 0; i < quizData.questions.length; i++) {
+        if (!document.querySelector(`.q${i} .answer`).disabled) {
+            document.querySelector(`.q${i}`).scrollIntoView();
+            return;
+        }
+    }
+}
+
 function setAnswer(selectedAnswer) {
-    const allAnswers = document.querySelectorAll(`.q${indexQuestion} .answer`);
-    
+    const questionId = selectedAnswer.parentNode.parentNode.classList.item(1);
+    const allAnswers = document.querySelectorAll(`.${questionId} .answer`);
+    const numberQuestionId = parseInt(questionId.slice(1));
+
     allAnswers.forEach( (elementAnswer) => {
         if (elementAnswer !== selectedAnswer) {
             elementAnswer.classList.add('whited-image');
         }
         elementAnswer.disabled = true;
 
-        quizData.questions[indexQuestion].answers.forEach( (objAnswer) => {
+        quizData.questions[numberQuestionId].answers.forEach( (objAnswer) => {
             if (elementAnswer.querySelector('p').innerHTML === objAnswer.text) {
                 // setting collors red or green and hits
                 if (objAnswer.isCorrectAnswer) {
@@ -116,10 +128,16 @@ function setAnswer(selectedAnswer) {
         });
     });
 
-    indexQuestion++;
+    questionsAnswered++;
     setTimeout(() => {
-        if (indexQuestion < quizData.questions.length) {
-            document.querySelector(`.q${indexQuestion}`).scrollIntoView();
+        if (questionsAnswered < quizData.questions.length) {
+            try {
+                document.querySelector(`.q${numberQuestionId + 1}`).scrollIntoView();
+            } catch {
+                scrollToUnansweredQuestion();
+            } finally {
+                scrollBy(0, -70);
+            }
         } else {
             renderResult();
         }
