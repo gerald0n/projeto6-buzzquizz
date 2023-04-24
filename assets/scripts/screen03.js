@@ -13,9 +13,7 @@ onkeyup = () => {
 
 if (btnProceedToQuestions)
     btnProceedToQuestions.addEventListener('click', () => {
-        screen03_1.classList.add('dp-none')
-        screen03_2.classList.remove('dp-none')
-        renderScreen03_2()
+
         if (
             inputQuizzTitle.value.length >= 20 &&
             inputQuizzTitle.value.length <= 65 &&
@@ -23,9 +21,11 @@ if (btnProceedToQuestions)
             inputAmountQuestions.value >= 3 &&
             inputAmountLevels.value >= 2
         ) {
-            screen03_1.classList.add('dp-none')
-            screen03_2.classList.remove('dp-none')
-            renderScreen03_2()
+            // screen03_1.classList.add('dp-none')
+            // screen03_2.classList.remove('dp-none')
+            // renderScreen03_2()
+            replaceScreen(screen03_1, screen03_2);
+            renderScreen03_2(Number(inputAmountQuestions.value))
         } else
             alert(
                 'Dados inseridos fora dos requisitos obrigatórios. Tente novamente!'

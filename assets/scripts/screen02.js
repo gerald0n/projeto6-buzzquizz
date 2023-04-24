@@ -1,7 +1,7 @@
-const timeToScroll = 100;
+const timeToScroll = 2000;
 let quizData;
 let hits = 0;
-let indexQuestion = 0;
+let questionsAnswered = 0;
 
 function quizScore(amountHits, amountQuestions) {
     return amountHits * 100 / amountQuestions;
@@ -18,28 +18,31 @@ function renderResult() {
     });
 
     const containerResult = document.querySelector('.container-result');
-    containerResult.classList.remove('hidden');
+    containerResult.classList.remove('dp-none');
     containerResult.classList.add('shown-flex');
 
     containerResult.innerHTML = `
-        <div class="header-result">
+        <div class="header-result" data-test="level-title">
             <label>${Math.round(score)}% de acerto: ${level.title}</label>
         </div>
         <div class="result">
-            <img src=${level.image} alt="" />
-            <p>${level.text}</p>
+            <img src=${level.image} alt="" data-test="level-img" />
+            <p data-test="level-text">${level.text}</p>
         </div>
     `;
 
-    containerResult.scrollIntoView(false);
+    containerResult.scrollIntoView();
+    scrollBy(0, -60);
 }
 
 function renderQuiz(quiz) {
     quizData = quiz.data;
 
+    replaceScreen(document.querySelector('.screen01'), document.querySelector('.screen02'));
+
     document.querySelector('.banner').innerHTML = `
         <div class="darkened-image"></div>
-        <img src="${quizData.img}" alt="" />
+        <img src=${quizData.image} alt="" />
         <div>
             <label>${quizData.title}</label>
         </div>
@@ -51,8 +54,8 @@ function renderQuiz(quiz) {
     let template = '';
     quizData.questions.forEach( (question) => {
         template += `
-            <div class="question q${i}">
-                <div class="header-question" style="background-color: ${question.color}">
+            <div class="question q${i}" data-test="question">
+                <div class="header-question" style="background-color: ${question.color}" data-test="question-title">
                     <label style>${question.title}</label>
                 </div>
                 <div class="content-answer">
@@ -64,9 +67,9 @@ function renderQuiz(quiz) {
 
         question.answers.forEach ( (answer) => {
             template += `
-                    <button class="answer" onclick="setAnswer(this)">
+                    <button class="answer" onclick="setAnswer(this)" data-test="answer">
                         <img src=${answer.image} alt="" />
-                        <p>${answer.text}</p>
+                        <p data-test="answer-text">${answer.text}</p>
                     </button>
             `;
         });
@@ -80,7 +83,7 @@ function renderQuiz(quiz) {
 function initScreen(quizId) {
     const promise = axios.get(URL_QUIZZES + '/' + quizId);
     hits = 0;
-    indexQuestion = 0;
+    questionsAnswered = 0;
 
     promise.then(renderQuiz);
     promise.catch( (error) => {
@@ -90,16 +93,27 @@ function initScreen(quizId) {
     });
 }
 
+function scrollToUnansweredQuestion() {
+    for (let i = 0; i < quizData.questions.length; i++) {
+        if (!document.querySelector(`.q${i} .answer`).disabled) {
+            document.querySelector(`.q${i}`).scrollIntoView();
+            return;
+        }
+    }
+}
+
 function setAnswer(selectedAnswer) {
-    const allAnswers = document.querySelectorAll(`.q${indexQuestion} .answer`);
-    
+    const questionId = selectedAnswer.parentNode.parentNode.classList.item(1);
+    const allAnswers = document.querySelectorAll(`.${questionId} .answer`);
+    const numberQuestionId = parseInt(questionId.slice(1));
+
     allAnswers.forEach( (elementAnswer) => {
         if (elementAnswer !== selectedAnswer) {
             elementAnswer.classList.add('whited-image');
         }
         elementAnswer.disabled = true;
 
-        quizData.questions[indexQuestion].answers.forEach( (objAnswer) => {
+        quizData.questions[numberQuestionId].answers.forEach( (objAnswer) => {
             if (elementAnswer.querySelector('p').innerHTML === objAnswer.text) {
                 // setting collors red or green and hits
                 if (objAnswer.isCorrectAnswer) {
@@ -114,10 +128,16 @@ function setAnswer(selectedAnswer) {
         });
     });
 
-    indexQuestion++;
+    questionsAnswered++;
     setTimeout(() => {
-        if (indexQuestion < quizData.questions.length) {
-            document.querySelector(`.q${indexQuestion}`).scrollIntoView();
+        if (questionsAnswered < quizData.questions.length) {
+            try {
+                document.querySelector(`.q${numberQuestionId + 1}`).scrollIntoView();
+            } catch {
+                scrollToUnansweredQuestion();
+            } finally {
+                scrollBy(0, -70);
+            }
         } else {
             renderResult();
         }
@@ -125,10 +145,9 @@ function setAnswer(selectedAnswer) {
 }
 
 function restartQuiz() {
-    window.location.reload();
+    const containerResult = document.querySelector('.container-result');
+    containerResult.classList.add('dp-none');
+    containerResult.classList.remove('shown-flex');
+    
     initScreen(quizData.id);
 }
-
-// calls of functions
-
-initScreen('92');

@@ -19,6 +19,16 @@ function random() {
     return Math.random() - 0.5
 }
 
+function replaceScreen(scrToOff, scrToOn) {
+    scrToOff.classList.add('dp-none');
+    scrToOn.classList.remove('dp-none');
+}
+
+function backHome(currentScreenSelector) {
+    window.location.reload();
+    /*replaceScreen(document.querySelector(currentScreenSelector), screen01);*/
+}
+
 function renderScreen01() {
     screen01.innerHTML = ''
     if (localStorage.length === 0)
@@ -55,7 +65,7 @@ function renderScreen01() {
         for(let i = 0; i < localStorage.length; i++) {
             axios.get(`${URL_QUIZZES}/${localStorage.id}`).then(response => {
                 containerUserQuizzes.innerHTML += `
-                <div class="card-quizz">
+                <div class="card-quizz" onclick="initScreen(${response.data.id})">
                 <div id="shadow"></div>
                 <img src="${response.data.image}" alt="" />
                 <span
@@ -74,6 +84,7 @@ function renderScreen01() {
     axios.get(URL_QUIZZES).then(response => {
         response.data.forEach(quizz => {
                 containerCards.innerHTML += `<div class="card-quizz">
+                <div class="card-quizz" onclick="initScreen(${quizz.id})">
     <div id="shadow"></div>
     <img src="${quizz.image}" alt="" />
     <span
@@ -84,9 +95,8 @@ function renderScreen01() {
             const btnCreateQuizz = document.querySelector('.btnCreateQuizz')
             if (btnCreateQuizz)
                 btnCreateQuizz.addEventListener('click', () => {
-                    screen01.classList.add('dp-none')
-                    screen03_1.classList.remove('dp-none')
-                })
+                    replaceScreen(screen01, screen03_1)
+                });
         })
     })
 }
