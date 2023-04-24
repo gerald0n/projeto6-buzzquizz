@@ -148,10 +148,6 @@
     transition: all 0.5s;
 }
 
-.levels-create-card.selected .level-head ion-icon {
-    display: none;
-    transition: all 0.5s;
-}
 
 textarea {
     resize: none;
