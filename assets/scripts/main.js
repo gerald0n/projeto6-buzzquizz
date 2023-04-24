@@ -21,7 +21,10 @@ const newQuizz = new Object()
 
 function renderScreen01() {
     if (localStorage.length > 0) {
-        replaceScreen(document.querySelector('.create-quizz'), document.querySelector('.user-quizzes'))
+        replaceScreen(
+            document.querySelector('.create-quizz'),
+            document.querySelector('.user-quizzes')
+        )
 
         for (let i = 0; i < localStorage.length; i++) {
             axios.get(`${URL_QUIZZES}/${localStorage.id}`).then(response => {
@@ -34,10 +37,10 @@ function renderScreen01() {
                 >
             </div>
             </div>`
-            })   
+            })
         }
 
-         axios.get(URL_QUIZZES).then(response => {
+        axios.get(URL_QUIZZES).then(response => {
             response.data.forEach(quizz => {
                 containerCards.innerHTML += `<div data-test="others-quiz" class="card-quizz">
                     <div class="card-quizz" onclick="initScreen(${quizz.id})">
@@ -50,7 +53,10 @@ function renderScreen01() {
             })
         })
     } else {
-        replaceScreen(document.querySelector('.user-quizzes'), document.querySelector('.create-quizz'))
+        replaceScreen(
+            document.querySelector('.user-quizzes'),
+            document.querySelector('.create-quizz')
+        )
         axios.get(URL_QUIZZES).then(response => {
             response.data.forEach(quizz => {
                 containerCards.innerHTML += `<div data-test="others-quiz" class="card-quizz">
@@ -98,7 +104,10 @@ function validacaoInputTextAnswer(inputText, count = 0) {
     })
 
     if (count == inputText.length) return true
-    else return false
+    else {
+        alert('texto da resposta vazio!')
+        return false
+    }
 }
 
 function validacaoInputImageAnswer(inputIncorrectImage, count = 0) {
@@ -107,7 +116,10 @@ function validacaoInputImageAnswer(inputIncorrectImage, count = 0) {
     })
 
     if (count == inputIncorrectImage.length) return true
-    else return false
+    else {
+        alert('url de uma das imagens não é válida!')
+        return false
+    }
 }
 
 function validacaoInputQuestionColor(inputQuestionColor, count = 0) {
@@ -118,7 +130,10 @@ function validacaoInputQuestionColor(inputQuestionColor, count = 0) {
         if (hexadecimal.test(input.value)) count++
     })
     if (count == inputQuestionColor.length) return true
-    else return false
+    else {
+        alert('uma das cores não é válida')
+        return false
+    }
 }
 
 function validacaoInputQuestionText(inputQuestionText, count = 0) {
@@ -128,7 +143,10 @@ function validacaoInputQuestionText(inputQuestionText, count = 0) {
     })
 
     if (count == inputQuestionText.length) return true
-    return false
+    else {
+        alert('texto da pergunta precisa ter, no mínimo, 20 caracteres')
+        return false
+    }
 }
 
 function validacaoLevelTitle(inputLevelTitle, count = 0) {
@@ -150,15 +168,15 @@ function validacaoLevelPercent(inputLevelPercent, count = 0) {
         if (!verificaIgualdade(inputLevelPercent)) {
             if (verificaZero(inputLevelPercent)) return true
             else {
-                console.log('um nível precisa ser 0.')
+                alert('um nível precisa ser 0.')
                 return false
             }
         } else {
-            console.log('níveis com valores iguais. Corrija, por favor.')
+            alert('níveis com valores iguais. Corrija, por favor.')
             return false
         }
     } else {
-        console.log('preencha os níveis!')
+        alert('preencha os níveis!')
         return false
     }
 }
@@ -171,7 +189,7 @@ function validacaoLevelDescription(inputLevelDescription, count = 0) {
 
     if (count == inputLevelDescription.length) return true
     else {
-        console.log('descrição precisa ter 30 ou mais caracteres!')
+        alert('descrição precisa ter 30 ou mais caracteres!')
         return false
     }
 }
