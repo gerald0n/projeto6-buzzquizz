@@ -145,5 +145,9 @@ function setAnswer(selectedAnswer) {
 }
 
 function restartQuiz() {
+    const containerResult = document.querySelector('.container-result');
+    containerResult.classList.add('dp-none');
+    containerResult.classList.remove('shown-flex');
+    
     initScreen(quizData.id);
 }

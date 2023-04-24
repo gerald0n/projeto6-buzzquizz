@@ -12,6 +12,7 @@ body, html {
 * {
     box-sizing: border-box;
     text-decoration: none;
+    word-break: break-word;
 }
 
 /* ------------------------------------------------------------------------------ */

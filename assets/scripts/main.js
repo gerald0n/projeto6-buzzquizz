@@ -12,7 +12,8 @@ function replaceScreen(scrToOff, scrToOn) {
 }
 
 function backHome(currentScreenSelector) {
-    replaceScreen(document.querySelector(currentScreenSelector), screen01);
+    window.location.reload();
+    /*replaceScreen(document.querySelector(currentScreenSelector), screen01);*/
 }
 
 function renderScreen01() {
