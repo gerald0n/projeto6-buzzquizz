@@ -31,7 +31,7 @@
         <section class="screen01"></section>
 
         <section class="screen02 dp-none">
-            <div class="banner">
+            <div class="banner" data-test="banner">
                 <!-- innerHTML render by js -->
             </div>
             <div class="content">
@@ -42,8 +42,8 @@
                     <!-- innerHTML render by js -->
                 </div>
                 <div class="buttons">
-                    <button onclick="restartQuiz()">Reiniciar Quizz</button>
-                    <button onclick="backHome('.screen02')">Voltar pra home</button>
+                    <button onclick="restartQuiz()" data-test="restart">Reiniciar Quizz</button>
+                    <button onclick="backHome('.screen02')" data-test="go-home">Voltar pra home</button>
                 </div>
             </div>
         </section>

@@ -22,12 +22,12 @@ function renderResult() {
     containerResult.classList.add('shown-flex');
 
     containerResult.innerHTML = `
-        <div class="header-result">
+        <div class="header-result" data-test="level-title">
             <label>${Math.round(score)}% de acerto: ${level.title}</label>
         </div>
         <div class="result">
-            <img src=${level.image} alt="" />
-            <p>${level.text}</p>
+            <img src=${level.image} alt="" data-test="level-img" />
+            <p data-test="level-text">${level.text}</p>
         </div>
     `;
 
@@ -54,8 +54,8 @@ function renderQuiz(quiz) {
     let template = '';
     quizData.questions.forEach( (question) => {
         template += `
-            <div class="question q${i}">
-                <div class="header-question" style="background-color: ${question.color}">
+            <div class="question q${i}" data-test="question">
+                <div class="header-question" style="background-color: ${question.color}" data-test="question-title">
                     <label style>${question.title}</label>
                 </div>
                 <div class="content-answer">
@@ -67,9 +67,9 @@ function renderQuiz(quiz) {
 
         question.answers.forEach ( (answer) => {
             template += `
-                    <button class="answer" onclick="setAnswer(this)">
+                    <button class="answer" onclick="setAnswer(this)" data-test="answer">
                         <img src=${answer.image} alt="" />
-                        <p>${answer.text}</p>
+                        <p data-test="answer-text">${answer.text}</p>
                     </button>
             `;
         });
