@@ -43,21 +43,21 @@ function renderScreen03_2() {
 </div>`
 
     for (let index = 0; index < inputAmountQuestions.value; index++)
-        screen03_2.innerHTML += `<div class="question-create-card inputQuestion0${
+        screen03_2.innerHTML += `<div data-test="question-ctn" class="question-create-card inputQuestion0${
             index + 1
         }">
     <div class="question wrapper">
         <div class="question-head">
             <span>Pergunta ${index + 1}</span>
-            <ion-icon name="create-outline"></ion-icon>
+            <ion-icon name="create-outline" data-test="toggle"></ion-icon>
         </div>
         <div class="question-info">
             <input
-                type="text"
+                type="text" data-test="question-input"
                 placeholder="Texto da pergunta"
                 class="inputQuestionText"
             />
-            <input
+            <input data-test="question-color-input"
                 type="text"
                 placeholder="Cor de fundo da pergunta"
                 class="inputQuestionColor"
@@ -67,39 +67,39 @@ function renderScreen03_2() {
     <div class="correct-answer wrapper">
         <span>Resposta correta</span>
 
-        <input type="text" placeholder="Resposta correta" class="inputCorrectAnswer" />
-        <input type="text" placeholder="URL da imagem" class="inputCorrectImage"/>
+        <input type="text" placeholder="Resposta correta" data-test="correct-answer-input" class="inputCorrectAnswer" />
+        <input type="text" placeholder="URL da imagem" data-test="correct-img-input" class="inputCorrectImage"/>
     </div>
     <div class="incorrect-answers wrapper">
         <span>Respostas incorretas</span>
         <div class="wrapper">
             <input
-                type="text"
+                type="text" data-test="wrong-answer-input"
                 placeholder="Resposta incorreta 1"
                 class="inputIncorrectAnswer"
             />
-            <input type="text" placeholder="URL da imagem 1" class="inputIncorrectImage"/>
+            <input type="text" placeholder="URL da imagem 1" data-test="wrong-img-input" class="inputIncorrectImage"/>
         </div>
         <div class="wrapper">
             <input
-                type="text"
+                type="text" data-test="wrong-answer-input"
                 placeholder="Resposta incorreta 2"
                 class="inputIncorrectAnswer"
             />
-            <input type="text" placeholder="URL da imagem 2" class="inputIncorrectImage"/>
+            <input type="text" placeholder="URL da imagem 2" data-test="wrong-img-input" class="inputIncorrectImage"/>
         </div>
         <div class="wrapper">
             <input
-                type="text"
+                type="text" data-test="wrong-answer-input"
                 placeholder="Resposta incorreta 3"
                 class="inputIncorrectAnswer"
             />
-            <input type="text" placeholder="URL da imagem 3" class="inputIncorrectImage"/>
+            <input type="text" placeholder="URL da imagem 3" data-test="wrong-img-input" class="inputIncorrectImage"/>
         </div>
     </div>
 </div>`
 
-    screen03_2.innerHTML += `<button class="btnCreateQuestions">
+    screen03_2.innerHTML += `<button data-test="go-create-levels" class="btnCreateQuestions">
     Prosseguir pra criar níveis
 </button>
 </div>`
@@ -158,34 +158,34 @@ function renderScreen03_3() {
         screen03_3.innerHTML += `<div class="levels-create-card inputLevel0${
             index + 1
         }">
-    <div class="levels wrapper">
+    <div class="levels wrapper" data-test="level-ctn">
         <div class="level-head">
             <span>Nivel ${index + 1}</span>
-            <ion-icon name="create-outline"></ion-icon>
+            <ion-icon name="create-outline" data-test="toggle"></ion-icon>
         </div>
         <input
-            type="text"
+            type="text" data-test="level-input"
             placeholder="Título do nível"
             class="inputLevelTitle"
         />
         <input
-            type="text"
+            type="text" data-test="level-percent-input"
             placeholder="% de acerto mínima"
             class="inputLevelPercent"
         />
         <input
-            type="text"
+            type="text" data-test="level-img-input"
             placeholder="URL da imagem do nível"
             class="inputLevelImage"
         />
-        <textarea
+        <textarea data-test="level-description-input"
             placeholder="Descrição do nível"
             class="inputLevelDescription"
         ></textarea>
     </div>
 </div>`
 
-    screen03_3.innerHTML += `<button id="btnCreateQuizz">Finalizar Quizz</button>`
+    screen03_3.innerHTML += `<button data-test="finish" id="btnCreateQuizz">Finalizar Quizz</button>`
 
     // -----------------------render------------------------- //
 
@@ -235,15 +235,15 @@ function renderScreen03_4() {
     <div class="header-title">
                     <h2>Seu quizz está pronto!</h2>
                 </div>
-                <div class="card-quizz">
+                <div class="card-quizz" data-test="success-banner">
                     <div id="shadow"></div>
                     <img src="${newQuizz.image}" alt="" />
                     <span
                         >${newQuizz.title}</span
                     >
                 </div>
-                <button id="btnAcessQuizz">Acessar Quizz</button>
-                <a id="backHome">Voltar pra home</a>
+                <button data-test="go-quiz" id="btnAcessQuizz">Acessar Quizz</button>
+                <a data-test="go-home" id="backHome">Voltar pra home</a>
             </div>`
 }
 

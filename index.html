@@ -54,28 +54,28 @@
             <div class="screen03-1 dp-none">
                 <div class="header-title">Comece pelo começo</div>
                 <div class="quest">
-                    <input
+                    <input data-test="title-input"
                         type="text"
                         placeholder="Titulo do seu quizz"
                         id="quizzTitle"
                     />
-                    <input
+                    <input data-test="img-input"
                         type="text"
                         placeholder="URL da imagem do seu quizz"
                         id="quizzImage"
                     />
                     <input
-                        type="text"
+                        type="text" data-test="questions-amount-input"
                         placeholder="Quantidade de perguntas do quizz"
                         id="amountQuestions"
                     />
                     <input
-                        type="text"
+                        type="text" data-test="levels-amount-input"
                         placeholder="Quantidade de níveis do quizz"
                         id="amountLevels"
                     />
                 </div>
-                <button id="btnProceedToQuestions" disabled>
+                <button id="btnProceedToQuestions" data-test="go-create-questions" disabled>
                     Prosseguir para criar perguntas
                 </button>
             </div>

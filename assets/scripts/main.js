@@ -37,7 +37,7 @@ function renderScreen01() {
         Você não criou nenhum <br />
         quizz ainda :(
     </p>
-    <button class="btnCreateQuizz">Criar Quizz</button>
+    <button data-test="create-btn" class="btnCreateQuizz">Criar Quizz</button>
 </div>
 <div class="all-quizzes">
 <h2>Todos os Quizzes</h2>
@@ -49,7 +49,7 @@ function renderScreen01() {
         screen01.innerHTML += `<div class="user-quizzes">
   <div class="add-quizz-hidden">
       <h2>Seus Quizzes</h2>
-      <ion-icon name="add-circle-sharp"></ion-icon>
+      <ion-icon data-test="create-btn" name="add-circle-sharp"></ion-icon>
   </div>
   </div>
 
@@ -65,7 +65,7 @@ function renderScreen01() {
         for(let i = 0; i < localStorage.length; i++) {
             axios.get(`${URL_QUIZZES}/${localStorage.id}`).then(response => {
                 containerUserQuizzes.innerHTML += `
-                <div class="card-quizz" onclick="initScreen(${response.data.id})">
+                <div data-test="my-quiz" onclick="initScreen(${response.data.id})">
                 <div id="shadow"></div>
                 <img src="${response.data.image}" alt="" />
                 <span
@@ -83,7 +83,7 @@ function renderScreen01() {
 
     axios.get(URL_QUIZZES).then(response => {
         response.data.forEach(quizz => {
-                containerCards.innerHTML += `<div class="card-quizz">
+                containerCards.innerHTML += `<div data-test="others-quiz" class="card-quizz">
                 <div class="card-quizz" onclick="initScreen(${quizz.id})">
     <div id="shadow"></div>
     <img src="${quizz.image}" alt="" />
