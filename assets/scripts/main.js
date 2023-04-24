@@ -28,7 +28,13 @@ function renderScreen01() {
         quizz ainda :(
     </p>
     <button class="btnCreateQuizz">Criar Quizz</button>
-</div>`
+</div>
+<div class="all-quizzes">
+<h2>Todos os Quizzes</h2>
+<div class="container-cards">
+</div>
+</div>
+`
     else {
         screen01.innerHTML += `<div class="user-quizzes">
   <div class="add-quizz-hidden">
