@@ -36,6 +36,7 @@ function renderResult() {
 }
 
 function renderQuiz(quiz) {
+    console.log(quiz.data)
     quizData = quiz.data;
 
     replaceScreen(document.querySelector('.screen01'), document.querySelector('.screen02'));

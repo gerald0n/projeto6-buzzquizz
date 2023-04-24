@@ -106,12 +106,11 @@ function renderScreen03_2() {
     // -----------------------render------------------------- //
 
     const btnCreateQuestions = document.querySelector('.btnCreateQuestions')
-    let questionHead = document.querySelectorAll('.question-head')
-
+    let questionHead = document.querySelectorAll('.question-head ion-icon')
     if (questionHead)
         questionHead.forEach(clickedHead => {
             clickedHead.addEventListener('click', () => {
-                clickedHead.parentNode.parentNode.classList.toggle('selected')
+                clickedHead.parentNode.parentNode.parentNode.classList.toggle('selected')
             })
         })
 
@@ -235,20 +234,22 @@ function renderScreen03_4() {
     <div class="header-title">
                     <h2>Seu quizz está pronto!</h2>
                 </div>
-                <div class="card-quizz" data-test="success-banner">
+                <div class="card-quizz" 
+                onclick="initScreen(${localStorage.id})"
+                data-test="success-banner">
                     <div id="shadow"></div>
                     <img src="${newQuizz.image}" alt="" />
                     <span
                         >${newQuizz.title}</span
                     >
                 </div>
-                <button data-test="go-quiz" id="btnAcessQuizz">Acessar Quizz</button>
+                <button data-test="go-quiz" id="btnAcessQuizz" onclick="initScreen(${localStorage.id})">Acessar Quizz</button>
                 <a data-test="go-home" id="backHome">Voltar pra home</a>
             </div>`
 }
 
 const btnBackHome = document.querySelector('#backHome')
-if (btnBackHome) btnBackHome.addEventListener('click', () => {})
+if (btnBackHome) btnBackHome.addEventListener('click', backHome)
 
 // end screen 3.4
 

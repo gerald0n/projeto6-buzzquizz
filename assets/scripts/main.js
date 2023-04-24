@@ -13,59 +13,20 @@ const inputAmountQuestions = document.querySelector('#amountQuestions')
 const inputAmountLevels = document.querySelector('#amountLevels')
 const btnProceedToQuestions = document.querySelector('#btnProceedToQuestions')
 
+const containerUserQuizzes = document.querySelector('.user-quizzes')
+const containerCards = document.querySelector('.all-quizzes .container-cards')
+const btnCreateQuizz = document.querySelector('.btnCreateQuizz')
+
 const newQuizz = new Object()
 
-function random() {
-    return Math.random() - 0.5
-}
-
-function replaceScreen(scrToOff, scrToOn) {
-    scrToOff.classList.add('dp-none');
-    scrToOn.classList.remove('dp-none');
-}
-
-function backHome(currentScreenSelector) {
-    window.location.reload();
-    /*replaceScreen(document.querySelector(currentScreenSelector), screen01);*/
-}
-
 function renderScreen01() {
-    screen01.innerHTML = ''
-    if (localStorage.length === 0)
-        screen01.innerHTML += `<div class="create-quizz">
-    <p>
-        Você não criou nenhum <br />
-        quizz ainda :(
-    </p>
-    <button data-test="create-btn" class="btnCreateQuizz">Criar Quizz</button>
-</div>
-<div class="all-quizzes">
-<h2>Todos os Quizzes</h2>
-<div class="container-cards">
-</div>
-</div>
-`
-    else {
-        screen01.innerHTML += `<div class="user-quizzes">
-  <div class="add-quizz-hidden">
-      <h2>Seus Quizzes</h2>
-      <ion-icon data-test="create-btn" name="add-circle-sharp"></ion-icon>
-  </div>
-  </div>
+    if (localStorage.length > 0) {
+        replaceScreen(document.querySelector('.create-quizz'), document.querySelector('.user-quizzes'))
 
-  <div class="all-quizzes">
-<h2>Todos os Quizzes</h2>
-<div class="container-cards">
-</div>
-</div>
-  `
-
-  const containerUserQuizzes = document.querySelector('.user-quizzes')
-  
-        for(let i = 0; i < localStorage.length; i++) {
+        for (let i = 0; i < localStorage.length; i++) {
             axios.get(`${URL_QUIZZES}/${localStorage.id}`).then(response => {
                 containerUserQuizzes.innerHTML += `
-                <div data-test="my-quiz" onclick="initScreen(${response.data.id})">
+                <div data-test="my-quiz" class="card-quizz" onclick="initScreen(${response.data.id})">
                 <div id="shadow"></div>
                 <img src="${response.data.image}" alt="" />
                 <span
@@ -73,35 +34,58 @@ function renderScreen01() {
                 >
             </div>
             </div>`
-            })
+            })   
         }
-  
-}
 
-
-    const containerCards = document.querySelector('.container-cards')
-
-    axios.get(URL_QUIZZES).then(response => {
-        response.data.forEach(quizz => {
+         axios.get(URL_QUIZZES).then(response => {
+            response.data.forEach(quizz => {
                 containerCards.innerHTML += `<div data-test="others-quiz" class="card-quizz">
-                <div class="card-quizz" onclick="initScreen(${quizz.id})">
-    <div id="shadow"></div>
-    <img src="${quizz.image}" alt="" />
-    <span
-        >${quizz.title}</span
-    >
-</div>`
-
-            const btnCreateQuizz = document.querySelector('.btnCreateQuizz')
-            if (btnCreateQuizz)
-                btnCreateQuizz.addEventListener('click', () => {
-                    replaceScreen(screen01, screen03_1)
-                });
+                    <div class="card-quizz" onclick="initScreen(${quizz.id})">
+        <div id="shadow"></div>
+        <img src="${quizz.image}" alt="" />
+        <span
+            >${quizz.title}</span
+        >
+    </div>`
+            })
         })
-    })
+    } else {
+        replaceScreen(document.querySelector('.user-quizzes'), document.querySelector('.create-quizz'))
+        axios.get(URL_QUIZZES).then(response => {
+            response.data.forEach(quizz => {
+                containerCards.innerHTML += `<div data-test="others-quiz" class="card-quizz">
+                    <div class="card-quizz" onclick="initScreen(${quizz.id})">
+        <div id="shadow"></div>
+        <img src="${quizz.image}" alt="" />
+        <span
+            >${quizz.title}</span
+        >
+    </div>`
+            })
+        })
+    }
+
+    if (btnCreateQuizz)
+        btnCreateQuizz.addEventListener('click', () => {
+            replaceScreen(screen01, screen03_1)
+        })
 }
 
 renderScreen01()
+
+function random() {
+    return Math.random() - 0.5
+}
+
+function replaceScreen(scrToOff, scrToOn) {
+    scrToOff.classList.add('dp-none')
+    scrToOn.classList.remove('dp-none')
+}
+
+function backHome(currentScreenSelector) {
+    window.location.reload()
+    /*replaceScreen(document.querySelector(currentScreenSelector), screen01);*/
+}
 
 // --------------------------------------------------- //
 
@@ -157,29 +141,26 @@ function validacaoLevelTitle(inputLevelTitle, count = 0) {
 }
 
 function validacaoLevelPercent(inputLevelPercent, count = 0) {
-    
     inputLevelPercent.forEach(input => {
         if (input.value.length > 0 && input.value >= 0 && input.value <= 100)
             count++
     })
 
-        if (count == inputLevelPercent.length) {
-            if(!(verificaIgualdade(inputLevelPercent))) {
-                if(verificaZero(inputLevelPercent)) 
-                    return true
-                else {
-                    console.log('um nível precisa ser 0.')
-                    return false
-                }
-            } else {
-                console.log('níveis com valores iguais. Corrija, por favor.')
+    if (count == inputLevelPercent.length) {
+        if (!verificaIgualdade(inputLevelPercent)) {
+            if (verificaZero(inputLevelPercent)) return true
+            else {
+                console.log('um nível precisa ser 0.')
                 return false
             }
-        }
-        else {
-            console.log('preencha os níveis!')
+        } else {
+            console.log('níveis com valores iguais. Corrija, por favor.')
             return false
-        }    
+        }
+    } else {
+        console.log('preencha os níveis!')
+        return false
+    }
 }
 
 function validacaoLevelDescription(inputLevelDescription, count = 0) {
@@ -208,8 +189,7 @@ function verificaZero(inputLevelPercent) {
     inputLevelPercent.forEach(input => {
         arrAux.push(input.value)
     })
-    if(arrAux.includes('0'))
-        return true
+    if (arrAux.includes('0')) return true
     else return false
 }
 

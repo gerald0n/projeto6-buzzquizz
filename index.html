@@ -17,7 +17,7 @@
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
         ></script>
         <link rel="stylesheet" href="./assets/styles/resett.css" />
-        <link rel="stylesheet" href="./assets/styles/main.css">
+        <link rel="stylesheet" href="./assets/styles/main.css" />
         <link rel="stylesheet" href="./assets/styles/screen01.css" />
         <link rel="stylesheet" href="./assets/styles/screen02.css" />
         <link rel="stylesheet" href="./assets/styles/screen03.css" />
@@ -30,6 +30,30 @@
 
         <section class="screen01">
             
+            <div class="create-quizz">
+                <p>
+                    Você não criou nenhum <br />
+                    quizz ainda :(
+                </p>
+                <button data-test="create-btn" class="btnCreateQuizz">
+                    Criar Quizz
+                </button>
+            </div>
+
+            <div class="user-quizzes">
+                <div class="add-quizz-hidden">
+                    <h2>Seus Quizzes</h2>
+                    <ion-icon onclick="replaceScreen(screen01, screen03_1)"
+                        data-test="create-btn"
+                        name="add-circle-sharp"
+                    ></ion-icon>
+                </div>
+            </div>
+
+            <div class="all-quizzes">
+                <h2>Todos os Quizzes</h2>
+                <div class="container-cards"></div>
+            </div>
         </section>
 
         <section class="screen02 dp-none">
@@ -44,8 +68,12 @@
                     <!-- innerHTML render by js -->
                 </div>
                 <div class="buttons">
-                    <button onclick="restartQuiz()" data-test="restart">Reiniciar Quizz</button>
-                    <button onclick="backHome('.screen02')" data-test="go-home">Voltar pra home</button>
+                    <button onclick="restartQuiz()" data-test="restart">
+                        Reiniciar Quizz
+                    </button>
+                    <button onclick="backHome('.screen02')" data-test="go-home">
+                        Voltar pra home
+                    </button>
                 </div>
             </div>
         </section>
@@ -54,28 +82,36 @@
             <div class="screen03-1 dp-none">
                 <div class="header-title">Comece pelo começo</div>
                 <div class="quest">
-                    <input data-test="title-input"
+                    <input
+                        data-test="title-input"
                         type="text"
                         placeholder="Titulo do seu quizz"
                         id="quizzTitle"
                     />
-                    <input data-test="img-input"
+                    <input
+                        data-test="img-input"
                         type="text"
                         placeholder="URL da imagem do seu quizz"
                         id="quizzImage"
                     />
                     <input
-                        type="text" data-test="questions-amount-input"
+                        type="text"
+                        data-test="questions-amount-input"
                         placeholder="Quantidade de perguntas do quizz"
                         id="amountQuestions"
                     />
                     <input
-                        type="text" data-test="levels-amount-input"
+                        type="text"
+                        data-test="levels-amount-input"
                         placeholder="Quantidade de níveis do quizz"
                         id="amountLevels"
                     />
                 </div>
-                <button id="btnProceedToQuestions" data-test="go-create-questions" disabled>
+                <button
+                    id="btnProceedToQuestions"
+                    data-test="go-create-questions"
+                    disabled
+                >
                     Prosseguir para criar perguntas
                 </button>
             </div>

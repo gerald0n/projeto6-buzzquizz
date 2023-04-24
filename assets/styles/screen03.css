@@ -124,10 +124,6 @@
     transition: all 0.5s;
 }
 
-.question-create-card.selected .question-head ion-icon {
-    display: none;
-    transition: all 0.5s;
-}
 
 .incorrect-answers > div {
     margin-bottom: 3.2rem;

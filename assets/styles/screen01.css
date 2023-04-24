@@ -19,7 +19,13 @@
     left: 0;
 }
 
+.screen01 .create-quizz.dp-none {
+    display: none;
+}
 
+.screen01 .user-quizzes.dp-none {
+    display: none;
+}
 
 .screen01 {
     width: 34rem;
