@@ -43,6 +43,66 @@ function renderScreen03_2() {
 </div>`
 
     for (let index = 0; index < inputAmountQuestions.value; index++)
+    if(index == 0)
+        screen03_2.innerHTML += 
+        
+        `<div data-test="question-ctn" class="question-create-card inputQuestion0${
+            index + 1
+        } selected">
+    <div class="question wrapper">
+        <div class="question-head">
+            <span>Pergunta ${index + 1}</span>
+            <ion-icon name="create-outline" data-test="toggle"></ion-icon>
+        </div>
+        <div class="question-info">
+            <input
+                type="text" data-test="question-input"
+                placeholder="Texto da pergunta"
+                class="inputQuestionText"
+            />
+            <input data-test="question-color-input"
+                type="text"
+                placeholder="Cor de fundo da pergunta"
+                class="inputQuestionColor"
+            />
+        </div>
+    </div>
+    <div class="correct-answer wrapper">
+        <span>Resposta correta</span>
+
+        <input type="text" placeholder="Resposta correta" data-test="correct-answer-input" class="inputCorrectAnswer" />
+        <input type="text" placeholder="URL da imagem" data-test="correct-img-input" class="inputCorrectImage"/>
+    </div>
+    <div class="incorrect-answers wrapper">
+        <span>Respostas incorretas</span>
+        <div class="wrapper">
+            <input
+                type="text" data-test="wrong-answer-input"
+                placeholder="Resposta incorreta 1"
+                class="inputIncorrectAnswer"
+            />
+            <input type="text" placeholder="URL da imagem 1" data-test="wrong-img-input" class="inputIncorrectImage"/>
+        </div>
+        <div class="wrapper">
+            <input
+                type="text" data-test="wrong-answer-input"
+                placeholder="Resposta incorreta 2"
+                class="inputIncorrectAnswer"
+            />
+            <input type="text" placeholder="URL da imagem 2" data-test="wrong-img-input" class="inputIncorrectImage"/>
+        </div>
+        <div class="wrapper">
+            <input
+                type="text" data-test="wrong-answer-input"
+                placeholder="Resposta incorreta 3"
+                class="inputIncorrectAnswer"
+            />
+            <input type="text" placeholder="URL da imagem 3" data-test="wrong-img-input" class="inputIncorrectImage"/>
+        </div>
+    </div>
+</div>`
+
+        else 
         screen03_2.innerHTML += `<div data-test="question-ctn" class="question-create-card inputQuestion0${
             index + 1
         }">
@@ -98,11 +158,14 @@ function renderScreen03_2() {
         </div>
     </div>
 </div>`
+        
 
     screen03_2.innerHTML += `<button data-test="go-create-levels" class="btnCreateQuestions">
     Prosseguir pra criar níveis
 </button>
 </div>`
+
+
     // -----------------------render------------------------- //
 
     const btnCreateQuestions = document.querySelector('.btnCreateQuestions')
@@ -147,6 +210,7 @@ function renderScreen03_2() {
 
 //start screen 3.3
 renderScreen03_3()
+
 function renderScreen03_3() {
     screen03_3.innerHTML = ''
     screen03_3.innerHTML += `<div class="header-title">
@@ -156,7 +220,7 @@ function renderScreen03_3() {
     for (let index = 0; index < inputAmountLevels.value; index++)
         screen03_3.innerHTML += `<div data-test="level-ctn" class="levels-create-card inputLevel0${
             index + 1
-        }">
+        } selected">
     <div class="levels wrapper">
         <div class="level-head">
             <span>Nivel ${index + 1}</span>
@@ -185,6 +249,7 @@ function renderScreen03_3() {
 </div>`
 
     screen03_3.innerHTML += `<button data-test="finish" id="btnCreateQuizz">Finalizar Quizz</button>`
+
 
     // -----------------------render------------------------- //
 
