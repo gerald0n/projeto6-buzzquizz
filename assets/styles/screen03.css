@@ -63,6 +63,14 @@
     height: 5.4rem;
     width: 32.4rem;
     margin-top: 3rem;
+
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.screen03 button:hover {
+    
+    background: #b81a12;
+   transition: all 0.3s;
 }
 
 .screen03 button:disabled,
@@ -183,7 +191,14 @@ textarea::placeholder {
     text-align: center;
     color: #818181;
     margin-block: 2rem;
+    cursor: pointer;
+    transition: all 0.2s;
 }
+.screen03-4 a:hover {
+    color: #b6b1b1;
+    transition: all 0.2s;
+}
+
 
 .screen03 .card-quizz {
     width: 34rem;

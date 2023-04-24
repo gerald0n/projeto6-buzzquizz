@@ -1,18 +1,4 @@
-axios.defaults.headers.common['Authorization'] = 'r8QBwdoMYNQpMCpzrdjOpk7b'
-
 //start screen 3.1
-
-const inputQuizzTitle = document.querySelector('#quizzTitle')
-const inputImageURL = document.querySelector('#quizzImage')
-const inputAmountQuestions = document.querySelector('#amountQuestions')
-const inputAmountLevels = document.querySelector('#amountLevels')
-const btnProceedToQuestions = document.querySelector('#btnProceedToQuestions')
-
-const screen03_1 = document.querySelector('.screen03-1')
-const screen03_2 = document.querySelector('.screen03-2')
-const screen03_3 = document.querySelector('.screen03-3')
-
-const newQuizz = new Object()
 
 onkeyup = () => {
     if (
@@ -27,6 +13,9 @@ onkeyup = () => {
 
 if (btnProceedToQuestions)
     btnProceedToQuestions.addEventListener('click', () => {
+        screen03_1.classList.add('dp-none')
+        screen03_2.classList.remove('dp-none')
+        renderScreen03_2()
         if (
             inputQuizzTitle.value.length >= 20 &&
             inputQuizzTitle.value.length <= 65 &&
@@ -36,26 +25,17 @@ if (btnProceedToQuestions)
         ) {
             screen03_1.classList.add('dp-none')
             screen03_2.classList.remove('dp-none')
-            renderScreen03_2(Number(inputAmountQuestions.value))
+            renderScreen03_2()
         } else
             alert(
                 'Dados inseridos fora dos requisitos obrigatórios. Tente novamente!'
             )
     })
 
-function checkURL(url) {
-    try {
-        let newURL = new URL(url)
-        return true
-    } catch (err) {
-        return false
-    }
-}
-
 //end screen 3.1
 
 //start screen 3.2
-
+renderScreen03_2()
 function renderScreen03_2() {
     screen03_2.innerHTML = ''
     screen03_2.innerHTML += ` <div class="header-title">
@@ -63,7 +43,7 @@ function renderScreen03_2() {
 </div>`
 
     for (let index = 0; index < inputAmountQuestions.value; index++)
-        screen03_2.innerHTML += `<div class="question-create-card" id="inputQuestion0${
+        screen03_2.innerHTML += `<div class="question-create-card inputQuestion0${
             index + 1
         }">
     <div class="question wrapper">
@@ -87,8 +67,8 @@ function renderScreen03_2() {
     <div class="correct-answer wrapper">
         <span>Resposta correta</span>
 
-        <input type="text" placeholder="Resposta correta" class="inputCorrectAnswer answerText" />
-        <input type="text" placeholder="URL da imagem" class="inputCorrectImage answerImage"/>
+        <input type="text" placeholder="Resposta correta" class="inputCorrectAnswer" />
+        <input type="text" placeholder="URL da imagem" class="inputCorrectImage"/>
     </div>
     <div class="incorrect-answers wrapper">
         <span>Respostas incorretas</span>
@@ -96,25 +76,25 @@ function renderScreen03_2() {
             <input
                 type="text"
                 placeholder="Resposta incorreta 1"
-                class="inputIncorrectAnswer answerText"
+                class="inputIncorrectAnswer"
             />
-            <input type="text" placeholder="URL da imagem 1" class="inputIncorrectImage answerImage"/>
+            <input type="text" placeholder="URL da imagem 1" class="inputIncorrectImage"/>
         </div>
         <div class="wrapper">
             <input
                 type="text"
                 placeholder="Resposta incorreta 2"
-                class="inputIncorrectAnswer answerText"
+                class="inputIncorrectAnswer"
             />
-            <input type="text" placeholder="URL da imagem 2" class="inputIncorrectImage answerImage"/>
+            <input type="text" placeholder="URL da imagem 2" class="inputIncorrectImage"/>
         </div>
         <div class="wrapper">
             <input
                 type="text"
                 placeholder="Resposta incorreta 3"
-                class="inputIncorrectAnswer answerText"
+                class="inputIncorrectAnswer"
             />
-            <input type="text" placeholder="URL da imagem 3" class="inputIncorrectImage answerImage"/>
+            <input type="text" placeholder="URL da imagem 3" class="inputIncorrectImage"/>
         </div>
     </div>
 </div>`
@@ -124,10 +104,7 @@ function renderScreen03_2() {
 </button>
 </div>`
     // -----------------------render------------------------- //
-    const inputQuestionText = document.querySelectorAll('.inputQuestionText')
-    const inputQuestionColor = document.querySelectorAll('.inputQuestionColor')
-    const answerText = document.querySelectorAll('.answerText')
-    const answerImage = document.querySelectorAll('.answerImage')
+
     const btnCreateQuestions = document.querySelector('.btnCreateQuestions')
     let questionHead = document.querySelectorAll('.question-head')
 
@@ -141,147 +118,211 @@ function renderScreen03_2() {
     if (btnCreateQuestions)
         btnCreateQuestions.addEventListener('click', () => {
             if (
-                validacaoInputQuestionText() &&
-                validacaoInputQuestionColor() &&
-                validacaoInputTextAnswer() &&
-                validacaoInputImageAnswer()
-            )
-                console.log('SUCESSO!')
-            else alert('ERROR: requisitos não atendidos. Tente novamente!')
+                validacaoInputQuestionText(
+                    document.querySelectorAll('.inputQuestionText')
+                ) &&
+                validacaoInputQuestionColor(
+                    document.querySelectorAll('.inputQuestionColor')
+                ) &&
+                validacaoInputTextAnswer(
+                    document.querySelectorAll(`.inputIncorrectAnswer`)
+                ) &&
+                validacaoInputImageAnswer(
+                    document.querySelectorAll('.inputIncorrectImage')
+                ) &&
+                validacaoInputTextAnswer(
+                    document.querySelectorAll('.inputCorrectAnswer')
+                ) &&
+                validacaoInputImageAnswer(
+                    document.querySelectorAll('.inputCorrectImage')
+                )
+            ) {
+                screen03_2.classList.add('dp-none')
+                screen03_3.classList.remove('dp-none')
+                renderScreen03_3()
+            } else alert('ERROR: requisitos não atendidos. Tente novamente!')
         })
-
-    // console.log(validacoesInputScreen03_2(inputQuestionText) && validacoesInputScreen03_2(inputQuestionColor))
-
-    function validacaoInputTextAnswer(count = 0) {
-        // Textos das respostas: não pode estar vazio
-        let arr = []
-        for (let index = 0; index < inputAmountQuestions; index++) {
-            arr.push(
-                document.querySelectorAll(`#inputQuestion0${index + 1} .answerText`)
-            )
-        }
-
-        arr.forEach(answer => {
-            answer.forEach(item => {
-                if (item.value.length > 0) count++
-            })
-        })
-
-        if (count == answerText.length) return true
-        else return false
-    }
-
-    function validacaoInputImageAnswer(count = 0) {
-        // Textos das respostas: não pode estar vazio
-        let arr = []
-        for (let index = 0; index < inputAmountQuestions; index++) {
-            arr.push(
-                document.querySelectorAll(`#inputQuestion0${index + 1} .answerImage`)
-            )
-        }
-        arr.forEach(answer => {
-            answer.forEach(item => {
-                if (checkURL(item.value)) count++
-            })
-        })
-
-        if (count == answerImage.length) return true
-        else return false
-    }
-
-    function validacaoInputQuestionColor(count = 0) {
-        // Cor de fundo: deve ser uma cor em hexadecimal
-        const hexadecimal = /^(#)([a-fA-F0-9]{6})$/
-
-        inputQuestionColor.forEach(input => {
-            if (hexadecimal.test(input.value)) count++
-        })
-        if (count == inputQuestionColor.length) return true
-        else return false
-    }
-
-    function validacaoInputQuestionText(count = 0) {
-        // Texto da pergunta: no mínimo 20 caracteres
-        inputQuestionText.forEach(input => {
-            if (input.value.length >= 20) count++
-        })
-
-        if (count == inputQuestionText.length) return true
-        return false
-    }
 }
 
-// renderScreen03_3()
-// function renderScreen03_3() {
-//     screen03_3.innerHTML = ''
-//     screen03_3.innerHTML += `<div class="header-title">
-//     <h2>Agora, decida os níveis!</h2>
-// </div>`
+//end screen 3.2
 
-//     for (let index = 0; index < 3; index++)
-//         screen03_3.innerHTML += `<div class="levels-create-card" id="inputLevel0${index+1}">
-//     <div class="levels wrapper">
-//         <div class="level-head">
-//             <span>Nivel ${index+1}</span>
-//             <ion-icon name="create-outline"></ion-icon>
-//         </div>
-//         <input
-//             type="text"
-//             placeholder="Título do nível"
-//             class="inputLevelTitle"
-//         />
-//         <input
-//             type="text"
-//             placeholder="% de acerto mínima"
-//             class="inputLevelPercent"
-//         />
-//         <input
-//             type="text"
-//             placeholder="URL da imagem do nível"
-//             class="inputLevelImage"
-//         />
-//         <textarea
-//             placeholder="Descrição do nível"
-//             class="inputLevelDescription"
-//         ></textarea>
-//     </div>
-// </div>`
+//start screen 3.3
+renderScreen03_3()
+function renderScreen03_3() {
+    screen03_3.innerHTML = ''
+    screen03_3.innerHTML += `<div class="header-title">
+    <h2>Agora, decida os níveis!</h2>
+</div>`
 
-//     screen03_3.innerHTML += `<button id="btnCreateLevels">Prosseguir pra criar níveis</button>`
+    for (let index = 0; index < inputAmountLevels.value; index++)
+        screen03_3.innerHTML += `<div class="levels-create-card inputLevel0${
+            index + 1
+        }">
+    <div class="levels wrapper">
+        <div class="level-head">
+            <span>Nivel ${index + 1}</span>
+            <ion-icon name="create-outline"></ion-icon>
+        </div>
+        <input
+            type="text"
+            placeholder="Título do nível"
+            class="inputLevelTitle"
+        />
+        <input
+            type="text"
+            placeholder="% de acerto mínima"
+            class="inputLevelPercent"
+        />
+        <input
+            type="text"
+            placeholder="URL da imagem do nível"
+            class="inputLevelImage"
+        />
+        <textarea
+            placeholder="Descrição do nível"
+            class="inputLevelDescription"
+        ></textarea>
+    </div>
+</div>`
 
-//     // -----------------------render------------------------- //
+    screen03_3.innerHTML += `<button id="btnCreateQuizz">Finalizar Quizz</button>`
 
-//     const levelHead = document.querySelectorAll('.level-head')
-//     const inputLevelTitle = document.querySelectorAll('.inputLevelTitle')
-//     const inputLevelPercent = document.querySelectorAll('.inputLevelPercent')
-//     const inputLevelImage = document.querySelectorAll('.inputLevelImage')
-//     const inputLevelDescription = document.querySelectorAll('.inputLevelDescription')
-//     const btnCreateLevels = document.querySelector('#btnCreateLevels')
+    // -----------------------render------------------------- //
 
-//     if (levelHead)
-//         levelHead.forEach(clickedHead => {
-//             clickedHead.addEventListener('click', () => {
-//                 clickedHead.parentNode.parentNode.classList.toggle('selected')
-//             })
-//         })
+    const levelHead = document.querySelectorAll('.level-head')
+    const btnCreateQuizz = document.querySelector('#btnCreateQuizz')
 
-//         if (btnCreateLevels)
-//         btnCreateLevels.addEventListener('click', () => {
-            
-//         })
+    if (levelHead)
+        levelHead.forEach(clickedHead => {
+            clickedHead.addEventListener('click', () => {
+                clickedHead.parentNode.parentNode.classList.toggle('selected')
+            })
+        })
 
-//     function validacaoLevelTitle() {
-//         inputLevelTitle.forEach(input => {
-//             if (input.value.length >= 10) count++
-//         })
+    if (btnCreateQuizz)
+        btnCreateQuizz.addEventListener('click', () => {
+            if (
+                validacaoLevelTitle(
+                    document.querySelectorAll('.inputLevelTitle')
+                ) &&
+                validacaoInputImageAnswer(
+                    document.querySelectorAll('.inputLevelImage')
+                ) &&
+                validacaoLevelPercent(
+                    document.querySelectorAll('.inputLevelPercent')
+                ) &&
+                validacaoLevelDescription(
+                    document.querySelectorAll('.inputLevelDescription')
+                )
+            ) {
+                createNewQuizz()
+                screen03_3.classList.add('dp-none')
+                screen03_4.classList.remove('dp-none')
+                renderScreen03_4()
+            } else {
+                alert('ERROR: requisitos não atendidos. Tente novamente!')
+            }
+        })
+}
 
-//         if (count == inputLevelTitle.length) return true
-//         return false
-//     }
-//     }
-//     function validacaoLevelPercent() {}
-//     function validacaoLevelImage() {}
-//     function validacaoLevelDescription() {}
-// }
+//end screen 3.3
 
-// //end screen 3.1
+// start screen 3.4
+renderScreen03_4()
+function renderScreen03_4() {
+    screen03_4.innerHTML = ''
+    screen03_4.innerHTML += `
+    <div class="header-title">
+                    <h2>Seu quizz está pronto!</h2>
+                </div>
+                <div class="card-quizz">
+                    <div id="shadow"></div>
+                    <img src="${newQuizz.image}" alt="" />
+                    <span
+                        >${newQuizz.title}</span
+                    >
+                </div>
+                <button id="btnAcessQuizz">Acessar Quizz</button>
+                <a id="backHome">Voltar pra home</a>
+            </div>`
+}
+
+const btnBackHome = document.querySelector('#backHome')
+if (btnBackHome) btnBackHome.addEventListener('click', () => {})
+
+// end screen 3.4
+
+function createNewQuizz() {
+    const listQuestions = []
+    const arrQuestions = [] // [{title, color, answers}, {title, color, answers}]
+    let arrAnswers = [] // [{respostaCorreta}, {respostaIncorreta}, {respostaIncorreta}, ...]
+
+    for (let i = 0; i < inputAmountQuestions.value; i++)
+        listQuestions[i] = document.querySelectorAll(`.inputQuestion0${i + 1}`)
+
+    listQuestions.forEach(questions => {
+        questions.forEach(question => {
+            const inputQuestionText =
+                question.querySelector('.inputQuestionText')
+            const inputQuestionColor = question.querySelector(
+                '.inputQuestionColor'
+            )
+            const correctAnswer = question.querySelector(`.correct-answer`)
+            const incorrectsAnswers =
+                question.querySelectorAll(`.incorrect-answers`)
+
+            arrAnswers.push({
+                text: correctAnswer.querySelector('.inputCorrectAnswer').value,
+                image: correctAnswer.querySelector('.inputCorrectImage').value,
+                isCorrectAnswer: true
+            })
+            incorrectsAnswers.forEach(incorrectAnswer => {
+                for (let i = 0; i < 3; i++) {
+                    arrAnswers.push({
+                        text: incorrectAnswer.querySelectorAll(
+                            '.inputIncorrectAnswer'
+                        )[i].value,
+                        image: incorrectAnswer.querySelectorAll(
+                            '.inputIncorrectImage'
+                        )[i].value,
+                        isCorrectAnswer: false
+                    })
+                }
+                arrQuestions.push({
+                    title: inputQuestionText.value,
+                    color: inputQuestionColor.value,
+                    answers: arrAnswers
+                })
+                arrAnswers = []
+            })
+        })
+    })
+
+    const inputLevelTitle = document.querySelectorAll('.inputLevelTitle')
+    const inputLevelPercent = document.querySelectorAll('.inputLevelPercent')
+    const inputLevelImage = document.querySelectorAll('.inputLevelImage')
+    const inputLevelDescription = document.querySelectorAll(
+        '.inputLevelDescription'
+    )
+
+    const levels = []
+
+    for (let i = 0; i < 2; i++) {
+        levels.push({
+            title: inputLevelTitle[i].value,
+            image: inputLevelImage[i].value,
+            text: inputLevelDescription[i].value,
+            minValue: inputLevelPercent[i].value
+        })
+    }
+
+    newQuizz.title = inputQuizzTitle.value
+    newQuizz.image = inputImageURL.value
+    newQuizz.questions = arrQuestions
+    newQuizz.levels = levels
+
+    axios.post(URL_QUIZZES, newQuizz).then(response => {
+        console.log(response.data)
+        localStorage.setItem('id', response.data.id)
+    }).catch(error => console.log(error.data))
+}
