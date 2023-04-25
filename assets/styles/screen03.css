@@ -41,7 +41,29 @@
     padding-inline: 1.4rem;
     font-size: 1.9rem;
     border: 1px solid #d1d1d1;
+    outline-color: #d1d1d1;
     border-radius: 0.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.span-error {
+    padding-left: .5rem;
+    visibility: hidden;
+    color: rgb(178, 0, 0);
+}
+
+.span-error.active {
+    visibility: visible;
+}
+
+input.error-validation {
+    border-color: rgb(178, 0, 0);
+    outline-color: rgb(178, 0, 0);
 }
 
 .screen03 input::placeholder {

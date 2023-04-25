@@ -20,16 +20,48 @@ if (btnProceedToQuestions)
             inputAmountQuestions.value >= 3 &&
             inputAmountLevels.value >= 2
         ) {
-            // screen03_1.classList.add('dp-none')
-            // screen03_2.classList.remove('dp-none')
-            // renderScreen03_2()
             replaceScreen(screen03_1, screen03_2)
             renderScreen03_2(Number(inputAmountQuestions.value))
-        } else
-            alert(
-                'Dados inseridos fora dos requisitos obrigatórios. Tente novamente!'
-            )
+        } else {
+            validation([
+                inputQuizzTitle,
+                inputImageURL,
+                inputAmountQuestions,
+                inputAmountLevels
+            ])
+        }
     })
+
+function validation(inputs) {
+    inputs.forEach(input => {
+        if (input === inputQuizzTitle)
+            if (!(input.value.length >= 20 && input.value.length <= 65))
+                error(input)
+            else sucess(input)
+
+        if (input === inputImageURL)
+            if (!checkURL(input.value)) error(input)
+            else sucess(input)
+
+        if (input === inputAmountQuestions)
+            if (!(input.value >= 3)) error(input)
+            else sucess(input)
+
+        if (input === inputAmountLevels)
+            if (!(input.value >= 2)) error(input)
+            else sucess(input)
+    })
+}
+
+function error(input) {
+    input.classList.add('error-validation')
+    input.parentNode.querySelector('span').classList.add('active')
+}
+
+function sucess(input) {
+    input.classList.remove('error-validation')
+    input.parentNode.querySelector('span').classList.remove('active')
+}
 
 //end screen 3.1
 

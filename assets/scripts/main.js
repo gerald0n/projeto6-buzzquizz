@@ -21,14 +21,17 @@ const newQuizz = new Object()
 
 function renderScreen01() {
     if (localStorage.length > 0) {
-        replaceScreen(
-            document.querySelector('.create-quizz'),
-            document.querySelector('.user-quizzes')
-        )
-
         for (let i = 0; i < localStorage.length; i++) {
-            axios.get(`${URL_QUIZZES}/${localStorage.id}`).then(response => {
-                containerUserQuizzes.innerHTML += `
+            replaceScreen(
+                document.querySelector('.create-quizz'),
+                document.querySelector('.user-quizzes')
+            )
+
+            for (let i = 0; i < localStorage.length; i++) {
+                axios
+                    .get(`${URL_QUIZZES}/${localStorage.id}`)
+                    .then(response => {
+                        containerUserQuizzes.innerHTML += `
                 <div data-test="my-quiz" class="card-quizz" onclick="initScreen(${response.data.id})">
                 <div id="shadow"></div>
                 <img src="${response.data.image}" alt="" />
@@ -37,7 +40,8 @@ function renderScreen01() {
                 >
             </div>
             </div>`
-            })
+                    })
+            }
         }
 
         axios.get(URL_QUIZZES).then(response => {

@@ -28,8 +28,7 @@
             <h1>BuzzQuizz</h1>
         </header>
 
-        <section class="screen01">
-            
+        <section class="screen01 dp-none">
             <div class="create-quizz">
                 <p>
                     Você não criou nenhum <br />
@@ -43,7 +42,8 @@
             <div class="user-quizzes">
                 <div class="add-quizz-hidden">
                     <h2>Seus Quizzes</h2>
-                    <ion-icon onclick="replaceScreen(screen01, screen03_1)"
+                    <ion-icon
+                        onclick="replaceScreen(screen01, screen03_1)"
                         data-test="create-btn"
                         name="add-circle-sharp"
                     ></ion-icon>
@@ -79,33 +79,54 @@
         </section>
 
         <section class="screen03">
-            <div class="screen03-1 dp-none">
+            <div class="screen03-1">
                 <div class="header-title">Comece pelo começo</div>
                 <div class="quest">
-                    <input
-                        data-test="title-input"
-                        type="text"
-                        placeholder="Titulo do seu quizz"
-                        id="quizzTitle"
-                    />
-                    <input
-                        data-test="img-input"
-                        type="text"
-                        placeholder="URL da imagem do seu quizz"
-                        id="quizzImage"
-                    />
-                    <input
-                        type="text"
-                        data-test="questions-amount-input"
-                        placeholder="Quantidade de perguntas do quizz"
-                        id="amountQuestions"
-                    />
-                    <input
-                        type="text"
-                        data-test="levels-amount-input"
-                        placeholder="Quantidade de níveis do quizz"
-                        id="amountLevels"
-                    />
+                    <div class="input-group">
+                        <span class="span-error"
+                            >O titulo do quizz precisa ter entre 20 e 65
+                            caracteres</span
+                        >
+                        <input
+                            data-test="title-input"
+                            type="text"
+                            placeholder="Titulo do seu quizz"
+                            id="quizzTitle"
+                        />
+                    </div>
+                    <div class="input-group">
+                        <span class="span-error">URL inválida.</span>
+                        <input
+                            data-test="img-input"
+                            type="text"
+                            placeholder="URL da imagem do seu quizz"
+                            id="quizzImage"
+                        />
+                    </div>
+                    <div class="input-group">
+                        <span class="span-error"
+                            >O quizz precisa ter, no mínimo, 3
+                            perguntas.</span
+                        >
+                        <input
+                            type="text"
+                            data-test="questions-amount-input"
+                            placeholder="Quantidade de perguntas do quizz"
+                            id="amountQuestions"
+                        />
+                    </div>
+                    <div class="input-group">
+                        <span class="span-error"
+                            >O quizz precisa ter, no mínimo, 2
+                            níveis.</span
+                        >
+                        <input
+                            type="text"
+                            data-test="levels-amount-input"
+                            placeholder="Quantidade de níveis do quizz"
+                            id="amountLevels"
+                        />
+                    </div>
                 </div>
                 <button
                     id="btnProceedToQuestions"
